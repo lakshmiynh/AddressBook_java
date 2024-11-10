@@ -11,14 +11,14 @@ public class Contacts
 
     public Contacts(String firstName, String lastName, String email, String phoneNumber, String address, String city, String state, String zipCode)
     {
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
-        PhoneNumber = phoneNumber;
-        Address = address;
-        City = city;
-        State = state;
-        ZipCode = zipCode;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Email = email;
+        this.PhoneNumber = phoneNumber;
+        this.Address = address;
+        this.City = city;
+        this.State = state;
+        this.ZipCode = zipCode;
     }
     public void display() {
         System.out.printf("%s %s %s %s %s %s %s %s%n",
