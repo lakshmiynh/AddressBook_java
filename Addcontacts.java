@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Addcontacts
@@ -45,7 +46,8 @@ public class Addcontacts
         }
         for (Contacts item : list)
         {
-            if (item.FirstName.equals(firstname) && item.LastName.equals(lastname)) {
+            if (item.FirstName.equals(firstname) && item.LastName.equals(lastname))
+            {
                 while (true)
                 {
                     System.out.println("\nEnter 1 -> edit First Name");
@@ -106,4 +108,43 @@ public class Addcontacts
             }
         }
     }
+    public static void deleteContacts(ArrayList<Contacts> list)
+    {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Deleting Contacts");
+        System.out.print("Enter the First Name: ");
+        String firstname = sc.nextLine();
+        System.out.print("Enter the Last Name: ");
+        String lastname = sc.nextLine();
+
+        if (firstname.isEmpty() || lastname.isEmpty()) {
+            System.out.println("Name cannot be null");
+            return;
+        }
+
+        boolean contactFound = false;
+        Iterator<Contacts> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            Contacts item = iterator.next();
+            if (item.FirstName.equals(firstname) && item.LastName.equals(lastname)) {
+                System.out.println("Confirm deletion!");
+                System.out.print("Press Y or y for YES: ");
+                char decision = sc.next().charAt(0);
+
+                if (decision == 'Y' || decision == 'y') {
+                    iterator.remove();  // Safe way to remove during iteration
+                    System.out.println("Successfully deleted!");
+                } else {
+                    System.out.println("Deletion canceled.");
+                }
+                contactFound = true;
+                break;
+            }
+        }
+        if (!contactFound) {
+            System.out.println("Entered name is not in the Address Book!");
+        }
+    }
+
 }

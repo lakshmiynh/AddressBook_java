@@ -12,8 +12,9 @@ public class Programmain {
         {
             System.out.println("Enter 1-> adding persons contact.");
             System.out.println("Enter 2-> Edit contact using name.");
-            System.out.println("Enter 3-> Display contacts.");
-            System.out.println("Enter 4-> Exit.");
+            System.out.println("Enter 3-> Delete contact using name.");
+            System.out.println("Enter 4-> Display contacts.");
+            System.out.println("Enter 5-> Exit.");
             System.out.println("Enter the choice=");
             int choice=sc.nextInt();
             System.out.println();
@@ -35,7 +36,19 @@ public class Programmain {
                         System.out.println("Address book is empty !,please add contacts !");
                         break;
                     }
+                    break;
                 case 3:
+                    if(list.stream().count()>0)
+                    {
+                        Addcontacts.deleteContacts(list);
+                    }
+                    else
+                    {
+                        System.out.println("Address book is empty !,please add contacts !");
+                        break;
+                    }
+                    break;
+                case 4:
                     System.out.println("Display the Contacts");
                     for(Contacts item:list)
                     {
