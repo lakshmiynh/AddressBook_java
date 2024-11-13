@@ -25,4 +25,19 @@ public class Contacts
                 FirstName, LastName, Email, PhoneNumber,
                 Address, City, State, ZipCode);
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Contacts contacts = (Contacts) obj;
+        return FirstName.equals(contacts.FirstName) && LastName.equals(contacts.LastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = FirstName.hashCode();
+        result = 31 * result + LastName.hashCode();
+        return result;
+    }
 }
+

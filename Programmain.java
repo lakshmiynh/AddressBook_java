@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Programmain {
@@ -7,7 +8,7 @@ public class Programmain {
         System.out.println("welcome to Address Book");
         Scanner sc=new Scanner(System.in);
 
-        ArrayList<Contacts> list=new ArrayList();
+        HashSet<Contacts> list=new HashSet<>();
         while(true)
         {
             System.out.println("Enter 1-> adding persons contact.");
@@ -24,7 +25,14 @@ public class Programmain {
                 case 1:
                     System.out.println("Adding contact details..");
                     Contacts newcontacts = Addcontacts.AddingDetails();
-                    list.add(newcontacts);
+                    if (newcontacts != null) {
+                        if (Addcontacts.isDuplicateContact(list, newcontacts.FirstName, newcontacts.LastName)) {
+                            System.out.println("This contact already exists. Please enter unique names.");
+                        } else {
+                            list.add(newcontacts);
+                            System.out.println("Contact added successfully!");
+                        }
+                    }
                     break;
                 case 2:
                     if(list.stream().count()>0)
