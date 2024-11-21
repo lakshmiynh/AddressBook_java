@@ -1,14 +1,13 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Addcontacts {
 
+    static Scanner scanner = new Scanner(System.in);
     public static Contacts AddingDetails() throws InvalidFormat
     {
         PatternRegex validator = new PatternRegex();
-        Scanner scanner = new Scanner(System.in);
+
         try
         {
             System.out.print("\nEnter the first name : ");
@@ -46,7 +45,8 @@ public class Addcontacts {
         }
     }
 
-    public static void EditingContacts(HashSet<Contacts> list) {
+    public static void EditingContacts(HashSet<Contacts> list)
+    {
         Scanner sc = new Scanner(System.in);
         System.out.println("Editing Contacts");
         System.out.println("Enter the First Name: ");
@@ -54,7 +54,8 @@ public class Addcontacts {
         System.out.println("Enter the Last Name: ");
         String lastname = sc.nextLine();
 
-        if (firstname.isEmpty() || lastname.isEmpty()) {
+        if (firstname.isEmpty() || lastname.isEmpty())
+        {
             System.out.println("Name cannot be null");
             return;
         }
@@ -170,6 +171,28 @@ public class Addcontacts {
             }
         }
         return false; // No duplicate found
+    }
+
+    public static void searchPersonbyState(HashSet<Contacts> list)
+    {
+        System.out.print("Enter the State to search: ");
+        String enteredState = scanner.nextLine();
+
+        // Use Streams to filter contacts by state
+        List<Contacts> matchingContacts = list.stream()
+                .filter(contact -> contact.State.equalsIgnoreCase(enteredState)) // Match state
+                .collect(Collectors.toList());
+
+        // Display results
+        if (!matchingContacts.isEmpty())
+        {
+            System.out.println("Matching contacts in state " + enteredState + ":");
+            matchingContacts.forEach(contact -> System.out.println(contact.display()));
+        }
+        else
+        {
+            System.out.println("No contacts found in state " + enteredState + ".");
+        }
     }
 }
 
