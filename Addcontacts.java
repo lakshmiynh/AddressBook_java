@@ -173,27 +173,27 @@ public class Addcontacts {
         return false; // No duplicate found
     }
 
-    public static void searchPersonbyState(HashSet<Contacts> list)
-    {
+    public static void searchPersonbyState(HashSet<Contacts> list) {
         System.out.print("Enter the State to search: ");
         String enteredState = scanner.nextLine();
 
-        // Use Streams to filter contacts by state
-        List<Contacts> matchingContacts = list.stream()
+        // Use Streams to filter contacts by state and count matches
+        long count = list.stream()
                 .filter(contact -> contact.State.equalsIgnoreCase(enteredState)) // Match state
-                .collect(Collectors.toList());
+                .count();
 
-        // Display results
-        if (!matchingContacts.isEmpty())
-        {
-            System.out.println("Matching contacts in state " + enteredState + ":");
-            matchingContacts.forEach(contact -> System.out.println(contact.display()));
-        }
-        else
-        {
+        if (count > 0) {
+            System.out.println("Number of matching contacts in state " + enteredState + ": " + count);
+
+            // Display the matching contacts
+            list.stream()
+                    .filter(contact -> contact.State.equalsIgnoreCase(enteredState))
+                    .forEach(contact -> System.out.println(contact.display()));
+        } else {
             System.out.println("No contacts found in state " + enteredState + ".");
         }
     }
+
 }
 
 
