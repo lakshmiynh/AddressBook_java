@@ -1,7 +1,8 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Addcontacts {
+public class Addcontacts
+{
 
     static Scanner scanner = new Scanner(System.in);
     public static Contacts AddingDetails() throws InvalidFormat
@@ -45,6 +46,17 @@ public class Addcontacts {
         }
     }
 
+    public static void DisplayContacts(HashSet<Contacts> list) {
+        if (list.isEmpty()) {
+            System.out.println("No contacts to display.");
+        } else {
+            System.out.println("Contacts List:");
+            // Print each contact only once
+            list.forEach(contact -> System.out.println(contact));
+        }
+    }
+
+
     public static void EditingContacts(HashSet<Contacts> list)
     {
         Scanner sc = new Scanner(System.in);
@@ -59,9 +71,12 @@ public class Addcontacts {
             System.out.println("Name cannot be null");
             return;
         }
-        for (Contacts item : list) {
-            if (item.FirstName.equals(firstname) && item.LastName.equals(lastname)) {
-                while (true) {
+        for (Contacts item : list)
+        {
+            if (item.FirstName.equals(firstname) && item.LastName.equals(lastname))
+            {
+                while (true)
+                {
                     System.out.println("\nEnter 1 -> edit First Name");
                     System.out.println("Enter 2 -> edit Last Name");
                     System.out.println("Enter 3 -> edit Email");
@@ -75,7 +90,8 @@ public class Addcontacts {
                     int choice = sc.nextInt();
                     sc.nextLine(); // Clear the newline
 
-                    switch (choice) {
+                    switch (choice)
+                    {
                         case 1:
                             System.out.print("\nEdit the First name : ");
                             item.FirstName = sc.nextLine();
@@ -135,7 +151,8 @@ public class Addcontacts {
         }
         boolean contactFound = false;
         Iterator<Contacts> iterator = list.iterator();
-        while (iterator.hasNext()) {
+        while (iterator.hasNext())
+        {
             Contacts item = iterator.next();
             if (item.FirstName.equals(firstname) && item.LastName.equals(lastname))
             {
@@ -188,10 +205,24 @@ public class Addcontacts {
             // Display the matching contacts
             list.stream()
                     .filter(contact -> contact.State.equalsIgnoreCase(enteredState))
-                    .forEach(contact -> System.out.println(contact.display()));
+                    .forEach(contact -> System.out.println(contact));
         } else {
             System.out.println("No contacts found in state " + enteredState + ".");
         }
+    }
+
+    public static void SortContactsByName(HashSet<Contacts> list) {
+        if (list.isEmpty()) {
+            System.out.println("No contacts available to sort.");
+            return;
+        }
+
+        List<Contacts> sortedContacts = list.stream()
+                .sorted(Comparator.comparing(contact -> contact.FirstName))
+                .collect(Collectors.toList());
+
+        System.out.println("Sorted Contacts by Name:");
+        sortedContacts.forEach(System.out::println);
     }
 
 }

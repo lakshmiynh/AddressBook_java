@@ -43,5 +43,9 @@ public class Contacts
         result = 31 * result + LastName.hashCode();
         return result;
     }
+    public String toString() {
+        return display();
+    }
+
 }
 
