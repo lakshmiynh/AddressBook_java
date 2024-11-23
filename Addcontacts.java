@@ -224,6 +224,22 @@ public class Addcontacts
         System.out.println("Sorted Contacts by Name:");
         sortedContacts.forEach(System.out::println);
     }
+    public static void SortContactsByCity(HashSet<Contacts> list)
+    {
+        if (list.isEmpty()) {
+            System.out.println("No contacts available to sort.");
+            return;
+        }
+
+        List<Contacts> sortedContacts = list.stream()
+                .sorted(Comparator.comparing(contact -> contact.City))
+                .collect(Collectors.toList());
+
+        System.out.println("Sorted Contacts by City:");
+        sortedContacts.forEach(System.out::println);
+    }
+
+
 
 }
 
