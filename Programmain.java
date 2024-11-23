@@ -18,7 +18,8 @@ public class Programmain
             System.out.println("Enter 4-> Display contacts.");
             System.out.println("Enter 5-> To search the person using State");
             System.out.println("Enter 6-> To sort the Contacts by person name");
-            System.out.println("Enter 7-> Exit.");
+            System.out.println("Enter 7-> To sort the Contacts by City");
+            System.out.println("Enter 8-> Exit.");
             System.out.println("Enter the choice=");
             int choice=sc.nextInt();
             System.out.println();
@@ -79,6 +80,10 @@ public class Programmain
                 case 6:
                     System.out.println("Sorting contacts by name...");
                     Addcontacts.SortContactsByName(list);
+                    break;
+                case 7:
+                    System.out.println("Sorting contacts by city...");
+                    Addcontacts.SortContactsByCity(list);
                     break;
                 default:System.out.println("Invalid input,Enter value between 1 to 8");
                 break;
