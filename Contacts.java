@@ -20,11 +20,15 @@ public class Contacts
         this.State = state;
         this.ZipCode = zipCode;
     }
-    public void display() {
-        System.out.printf("%s %s %s %s %s %s %s %s%n",
+
+    public String display()
+    {
+        return String.format("%s %s %s %s %s %s %s %s",
                 FirstName, LastName, Email, PhoneNumber,
                 Address, City, State, ZipCode);
     }
+
+
 
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -39,5 +43,9 @@ public class Contacts
         result = 31 * result + LastName.hashCode();
         return result;
     }
+    public String toString() {
+        return display();
+    }
+
 }
 
