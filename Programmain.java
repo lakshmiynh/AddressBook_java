@@ -10,6 +10,7 @@ public class Programmain
         Scanner sc=new Scanner(System.in);
 
         HashSet<Contacts> list=new HashSet<>();
+        String fileName =  "C:\\Users\\laksh\\OneDrive\\Desktop\\Contactslist3.txt";
         while(true)
         {
             System.out.println("Enter 1-> adding persons contact.");
@@ -39,6 +40,7 @@ public class Programmain
                             {
                                 list.add(newcontacts);
                                 System.out.println("Contact added successfully!");
+                                Addcontacts.writeToFile(fileName, newcontacts);
                             }
                         }
                         break;
