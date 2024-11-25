@@ -1,14 +1,15 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Addcontacts
 {
-
     static Scanner scanner = new Scanner(System.in);
     public static Contacts AddingDetails() throws InvalidFormat
     {
         PatternRegex validator = new PatternRegex();
-
         try
         {
             System.out.print("\nEnter the first name : ");
@@ -46,7 +47,8 @@ public class Addcontacts
         }
     }
 
-    public static void DisplayContacts(HashSet<Contacts> list) {
+    public static void DisplayContacts(HashSet<Contacts> list)
+    {
         if (list.isEmpty()) {
             System.out.println("No contacts to display.");
         } else {
@@ -190,7 +192,8 @@ public class Addcontacts
         return false; // No duplicate found
     }
 
-    public static void searchPersonbyState(HashSet<Contacts> list) {
+    public static void searchPersonbyState(HashSet<Contacts> list)
+    {
         System.out.print("Enter the State to search: ");
         String enteredState = scanner.nextLine();
 
@@ -211,8 +214,10 @@ public class Addcontacts
         }
     }
 
-    public static void SortContactsByName(HashSet<Contacts> list) {
-        if (list.isEmpty()) {
+    public static void SortContactsByName(HashSet<Contacts> list)
+    {
+        if (list.isEmpty())
+        {
             System.out.println("No contacts available to sort.");
             return;
         }
@@ -226,7 +231,8 @@ public class Addcontacts
     }
     public static void SortContactsByCity(HashSet<Contacts> list)
     {
-        if (list.isEmpty()) {
+        if (list.isEmpty())
+        {
             System.out.println("No contacts available to sort.");
             return;
         }
@@ -239,8 +245,16 @@ public class Addcontacts
         sortedContacts.forEach(System.out::println);
     }
 
-
-
+    public static void writeToFile(String fileName, Contacts contact)
+    {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            writer.write(contact.toString());
+            writer.newLine();
+            System.out.println("Contact details saved to file: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
 }
 
 
